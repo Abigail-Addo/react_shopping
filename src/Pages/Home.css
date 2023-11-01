@@ -1,0 +1,74 @@
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+header .search {
+  display: flex;
+  gap: 1rem;
+}
+
+header form {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+ul li a i {
+  margin-right: 0.5rem;
+}
+
+div.card {
+  position: relative;
+}
+
+div.card-body i.bi {
+  color: yellow;
+}
+
+
+div.card-body i.fa {
+  position: absolute;
+  bottom: 7%;
+  right: 10%;
+}
+
+div.card-text {
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+div.card-text p.fw-bold {
+  width: 80%;
+  margin: auto;
+}
+
+.textTruncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div.card-text {
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+div.card-text p.fw-bold {
+  width: 80%;
+  margin: auto;
+}
+
+.textTruncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.para {
+  width: 80%;
+  margin: auto;
+}
+
