@@ -111,6 +111,6 @@
     text-decoration: none;
     color: #0095F6;
   }
-  div.message {
+  div.errorMessage {
     color: red;
   }

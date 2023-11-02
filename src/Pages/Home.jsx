@@ -1,4 +1,3 @@
-// import React from 'react'
 import './Home.css'
 
 import Header from '../components/header'
@@ -13,7 +12,6 @@ const Home = () => {
             </Header>
 
             <Navbar>
-
             </Navbar>
 
             <Product />

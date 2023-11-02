@@ -1,4 +1,3 @@
-
 import './Login.css'
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
 
-    const navigate = useNavigate();
+    const redirect = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
@@ -36,18 +35,16 @@ const Login = () => {
             })
 
             const response = await result.json();
-            if (result.status == 200) {
-                navigate("/home");
-                console.log(response.id);
-            }
             if (result.status != 200) {
                 setErrorMessage("Invalid username or password")
                 setTimeout(() => {
-                    setErrorMessage("")
                     setErrorMessage(errorMessage)
                 }, 2000);
             }
-
+            if (result.status == 200) {
+                redirect("/home");
+                console.log(response.id);
+            }
         } catch (error) {
             console.error(error);
         }
@@ -59,11 +56,10 @@ const Login = () => {
             <main className="wrapper">
                 <h2>Welcome </h2>
                 {errorMessage && (
-                    <div className="message">
+                    <div className="errorMessage">
                         <p>{errorMessage}</p>
                     </div>
                 )
-
                 }
                 <form>
                     <div className="form-controls">
