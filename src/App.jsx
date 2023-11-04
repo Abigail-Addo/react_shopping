@@ -6,6 +6,9 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import './index.css'
 import './App.css'
 
+import { AuthProvider } from './Context/AuthContext';
+import { AnimatePresence } from 'framer-motion';
+
 import Routes from './routes'
 
 
@@ -16,7 +19,11 @@ function App() {
 
     <>
 
-      <Routes/>
+      <AnimatePresence wait>
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
+      </AnimatePresence>
 
     </>
 

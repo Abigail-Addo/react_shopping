@@ -1,6 +1,6 @@
-// import React from 'react'
+const Navbar = () => {
 
-const navbar = () => {
+
     return (
         <>
             <nav className="py-2 bg-body-tertiary">
@@ -55,4 +55,4 @@ const navbar = () => {
     )
 }
 
-export default navbar
+export default Navbar

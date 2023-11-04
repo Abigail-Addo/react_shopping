@@ -1,21 +1,24 @@
-#root {
-  width: 100%;
-  height: 100vh;
+header {
+ margin-top: 2rem;
 }
 
-header .search {
-  display: flex;
-  gap: 1rem;
-}
-
-header form {
+/* header form {
   height: 2rem;
   display: flex;
   align-items: center;
+} */
+
+li.image img {
+  height: 10%;
+  width: 30%;
 }
 
 ul li a i {
   margin-right: 0.5rem;
+}
+
+ul li {
+  cursor: pointer;
 }
 
 div.card {
@@ -72,3 +75,84 @@ div.card-text p.fw-bold {
   margin: auto;
 }
 
+div.imageSlider {
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  margin-top: 1rem;
+  position: relative;
+}
+
+div.imageSlider img {
+  width: 100%;
+  height: 100%;
+  margin: 1rem 0;
+  border: 2px solid white;
+
+}
+
+div.imageSlider i.bi-arrow-left {
+  cursor: pointer;
+  font-size: 3rem;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.imageSlider i.bi-arrow-left:hover,
+div.imageSlider i.bi-arrow-left:focus {
+  display: block;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+div.imageSlider i.bi-arrow-right {
+  cursor: pointer;
+  font-size: 3rem;
+  padding: 0 0.2rem;
+  position: absolute;
+  top: 0;
+  right: 10%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.imageSlider i.bi-arrow-right:hover,
+div.imageSlider i.bi-arrow-right:focus {
+  display: block;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+i.bi-box-arrow-right {
+  display: flex;
+  margin-left: 1rem;
+  color: #5c5ce8;
+}
+
+li.user img {
+  border-radius: 50%;
+  height: 7%;
+  width: 20%;
+  margin-right: 0.5rem;
+}
+div.footer {
+  background-color: #fff;
+  margin-bottom: 2rem;
+}
