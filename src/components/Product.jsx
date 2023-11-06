@@ -25,6 +25,7 @@ const Product = () => {
                 exit={{ x: -1000 }}
                 transition={{ duration: 6 }}>
                 <div className="container mt-4 mb-4 bg-white px-5 py-5">
+                    <h1 className="pb-3">Featured Products</h1>
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
 
                         {products.map((item) => (

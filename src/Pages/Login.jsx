@@ -45,7 +45,7 @@ const Login = () => {
                 setSuccessMessage("Login successful")
                 setTimeout(() => {
                     redirect("/home");
-                }, 2000);
+                }, 1000);
                 console.log(data.id);
             } else {
                 setErrorMessage("Invalid username or password")

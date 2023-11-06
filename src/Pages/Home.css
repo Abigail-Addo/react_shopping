@@ -77,7 +77,7 @@ div.card-text p.fw-bold {
 
 div.imageSlider {
   width: 100%;
-  height: 100%;
+  height: 50%;
   border: 2px solid white;
   margin-top: 1rem;
   position: relative;
@@ -85,7 +85,7 @@ div.imageSlider {
 
 div.imageSlider img {
   width: 100%;
-  height: 100%;
+  height: 50%;
   margin: 1rem 0;
   border: 2px solid white;
 
