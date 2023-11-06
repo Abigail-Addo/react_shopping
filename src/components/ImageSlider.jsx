@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react'
-import { motion } from "framer-motion";
 
 
 const ImageSlider = ({ slides }) => {
@@ -39,17 +38,11 @@ const ImageSlider = ({ slides }) => {
 
     return (
         <>
-            <motion.div
-                initial={{ x: 1000 }}
-                animate={{ x: 0 }}
-                exit={{ x: 1000 }}
-                transition={{ duration: 6 }}>
-                <div className="imageSlider container">
-                    <i className="bi bi-arrow-left" onClick={goPrevious}></i>
-                    <img src={`${slides[index].url}`} alt={`${slides[index].title}`} />
-                    <i className="bi bi-arrow-right" onClick={goNext}></i>
-                </div>
-            </motion.div>
+            <div className="imageSlider container">
+                <i className="bi bi-arrow-left" onClick={goPrevious}></i>
+                <img src={`${slides[index].url}`} alt={`${slides[index].title}`} />
+                <i className="bi bi-arrow-right" onClick={goNext}></i>
+            </div>
         </>
     )
 };

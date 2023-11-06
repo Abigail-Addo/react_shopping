@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../Context/useAuth";
-import { motion } from "framer-motion";
 
 const Login = () => {
 
@@ -46,7 +45,7 @@ const Login = () => {
                 setSuccessMessage("Login successful")
                 setTimeout(() => {
                     redirect("/home");
-                }, 4000);
+                }, 2000);
                 console.log(data.id);
             } else {
                 setErrorMessage("Invalid username or password")
@@ -62,54 +61,47 @@ const Login = () => {
 
     return (
         <>
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{
-                    duration: 3,}}>
-                <div className='con'>
-                    <main className="wrapper">
-                        <h2>Welcome </h2>
-                        {errorMessage && (
-                            <div className="errorMessage">
-                                <p>{errorMessage}</p>
-                            </div>
-                        )
-                        }
-                        {successMessage && (
-                            <div className="successMessage">
-                                <p>{successMessage}</p>
-                            </div>
-                        )
-                        }
-                        <form>
-                            <div className="form-controls">
-                                <label htmlFor="email">Email</label>
-                                <input type="email" name="email" placeholder="Email" id="email" onChange={(e) => setEmail(e.target.value)} required />
-                            </div>
-                            <div className="form-controls">
-                                <label htmlFor="password">Password</label>
-                                <input type="password" name="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-                                <i className="bi bi-eye-slash" id="togglePassword"></i>
-                            </div>
 
-                            <button type="submit" className="submit" onClick={loginBtn}>Log in</button>
+            <div className='con'>
+                <main className="wrapper">
+                    <h2>Welcome </h2>
+                    {errorMessage && (
+                        <div className="errorMessage">
+                            <p>{errorMessage}</p>
+                        </div>
+                    )
+                    }
+                    {successMessage && (
+                        <div className="successMessage">
+                            <p>{successMessage}</p>
+                        </div>
+                    )
+                    }
+                    <form>
+                        <div className="form-controls">
+                            <label htmlFor="email">Email</label>
+                            <input type="email" name="email" placeholder="Email" id="email" onChange={(e) => setEmail(e.target.value)} required />
+                        </div>
+                        <div className="form-controls">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" name="password" id="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
+                            <i className="bi bi-eye-slash" id="togglePassword"></i>
+                        </div>
+
+                        <button type="submit" className="submit" onClick={loginBtn}>Log in</button>
 
 
-                            <a href="">Forgot password?</a>
-                        </form>
+                        <a href="">Forgot password?</a>
+                    </form>
 
-                        <p>
-                            Dont have an account?
-                            <Link to="/signup">
-                                Sign up
-                            </Link>
-                        </p>
-                    </main>
-                </div >
-
-            </motion.div >
+                    <p>
+                        Dont have an account?
+                        <Link to="/signup">
+                            Sign up
+                        </Link>
+                    </p>
+                </main>
+            </div >
         </>
 
     )
