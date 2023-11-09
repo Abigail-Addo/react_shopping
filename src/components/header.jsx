@@ -2,11 +2,24 @@ import image from '../assets/logo.png'
 import { useAuth } from '../Context/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
 
 const Header = () => {
 
-    const { currentUser, auth, logout } = useAuth();
+    const { setCurrentUser, currentUser, setAuth, auth, logout } = useAuth();
     const redirect = useNavigate();
+
+    useEffect(() => {
+        const localToken = localStorage.getItem("token");
+        if (localToken && localToken.length > 0) {
+          setAuth(true);
+        let user = JSON.parse(localStorage.getItem("user"));
+        setCurrentUser(user);
+        } else {
+          setAuth(false);
+        }
+      }
+      , [setCurrentUser, setAuth]);
 
     const onLogout = () => {
         logout()
