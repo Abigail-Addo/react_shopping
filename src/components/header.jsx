@@ -19,7 +19,7 @@ const Header = () => {
           setAuth(false);
         }
       }
-      , [setCurrentUser, setAuth]);
+      , [setCurrentUser, setAuth]); 
 
     const onLogout = () => {
         logout()

@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState([''])
     const [auth, setAuth] = useState(false)
     const [token, setToken] = useState([''])
+    const [cartCount, setCartCount] = useState(0)
 
     const login = (user) => {
         if (user.id) {
@@ -17,14 +18,14 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem("token", randomToken);
 
             let User = JSON.stringify(user);
-            
+
             setCurrentUser(User)
             setAuth(true)
             localStorage.setItem("user", User);
             return
         }
     }
-
+    
     const logout = () => {
         setCurrentUser(null)
         setToken(null)
@@ -50,6 +51,8 @@ export const AuthProvider = ({ children }) => {
         setCurrentUser,
         token,
         setToken,
+        cartCount,
+        setCartCount,
         login,
         logout,
     }

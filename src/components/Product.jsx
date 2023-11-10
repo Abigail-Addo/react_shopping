@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useAuth } from '../Context/useAuth';
+
 
 const Product = () => {
-    const [products, setProducts] = useState([])
-
+    const [products, setProducts] = useState([]);
+    const { setCartCount } = useAuth();
 
     useEffect(() => {
         (async function () {
@@ -15,6 +17,77 @@ const Product = () => {
         })();
     }, [])
 
+    const cartBtn = async (product_id) => {
+        let user = JSON.parse(localStorage.getItem("user"));
+        if (!user || !user.id) {
+            console.error("User not found in localStorage");
+            return;
+        }
+
+        let customer_id = user.id;
+
+        const order = await fetch('http://localhost:7070/shop/v1/order', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json "
+            },
+            body: JSON.stringify({
+                product_id: Number(product_id),
+                customer_id: Number(customer_id)
+            })
+        })
+
+        if (order.status == 409) {
+            let res = await order.json();
+            alert('Product has already been added to cart');
+            console.log(res)
+
+            return;
+        }
+
+        if (order.status == 200 || order.status == 201) {
+            let res = await order.json();
+            console.log(res)
+
+            alert("Item successfully added to cart")
+            handleAddToCart();
+
+        }
+    };
+
+    const handleAddToCart = async () => {
+        let user = JSON.parse(localStorage.getItem("user"));
+        if (!user || !user.id) {
+            console.error("User not found in localStorage");
+            return;
+        }
+
+        const rs = await fetch('http://localhost:7070/shop/v1/orders-with-customerId', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                customer_id: user.id
+            })
+
+        });
+
+        if (rs.status == 200) {
+            let orders = await rs.json();
+
+            const { order } = orders;
+            const count = order.length;
+
+            setCartCount(count);
+        }
+    }
+
+    useEffect(() => {
+        handleAddToCart();
+    });
+
+
 
 
     return (
@@ -23,7 +96,7 @@ const Product = () => {
                 initial={{ x: -1000 }}
                 animate={{ x: 0 }}
                 exit={{ x: -1000 }}
-                transition={{ duration: 6 }}>
+                transition={{ duration: 1 }}>
                 <div className="container mt-4 mb-4 bg-white px-5 py-5">
                     <h1 className="pb-3">Featured Products</h1>
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
@@ -43,9 +116,9 @@ const Product = () => {
                                                 <i className="bi bi-star"></i>
                                             </div>
                                             <p className="price para">&cent; {item.price}</p>
-                                            <a href="" className="text-dark">
-                                                <i className="fa fa-shopping-cart addCart" aria-hidden="true" id={item.id}></i>
-                                            </a>
+
+                                            <i className="fa fa-shopping-cart addCart text-dark" aria-hidden="true" id={item.id} onClick={() => cartBtn(item.id)}></i>
+
                                         </div>
                                     </div>
                                 </div>

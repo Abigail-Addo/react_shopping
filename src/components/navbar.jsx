@@ -1,4 +1,15 @@
+// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/useAuth';
+
 const Navbar = () => {
+
+    const { cartCount } = useAuth();
+    const redirect = useNavigate();
+
+    const cart = () => {
+        redirect("/cart");
+    }
 
 
     return (
@@ -43,8 +54,8 @@ const Navbar = () => {
                     </ul>
                     <ul className="nav shopping">
                         <li className="nav-item">
-                            <a href="cart.html" className="nav-link link-body-emphasis px-2">
-                                <div className="increment" id="cart-number"></div>
+                            <a href="" className="nav-link link-body-emphasis px-2" onClick={cart}>
+                                <div className="increment" id="cart-number">{cartCount}</div>
                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i> Cart
                             </a>
                         </li>
