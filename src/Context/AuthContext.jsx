@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(false)
     const [token, setToken] = useState([''])
     const [cartCount, setCartCount] = useState(0)
+    const [cartPrice, setCartPrice] = useState(0)
 
     const login = (user) => {
         if (user.id) {
@@ -32,6 +33,7 @@ export const AuthProvider = ({ children }) => {
         setAuth(false)
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        localStorage.removeItem("totalPrice");
     }
 
     useEffect(() => {
@@ -53,6 +55,8 @@ export const AuthProvider = ({ children }) => {
         setToken,
         cartCount,
         setCartCount,
+        cartPrice,
+        setCartPrice,
         login,
         logout,
     }

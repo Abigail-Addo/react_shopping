@@ -4,7 +4,7 @@
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
-  background: radial-gradient(circle, #333333, #000000);
+  background: #fff;
 }
 
 * {

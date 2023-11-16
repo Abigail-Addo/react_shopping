@@ -1,5 +1,4 @@
-// import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../Context/useAuth';
 
 const Navbar = () => {
@@ -15,47 +14,43 @@ const Navbar = () => {
     return (
         <>
             <nav className="py-2 bg-body-tertiary">
-                <div className="container d-flex flex-wrap">
+                <div className="container d-flex flex-wrap align-items-center">
                     <ul className="nav me-auto">
-                        <li className="nav-item"><a href="#" className="nav-link link-body-emphasis px-2 active"> <i className="fa fa-bars"
-                            aria-hidden="true"></i></a>
-                        </li>
-                    </ul>
-                    <ul className="nav me-auto">
-                        <li className="nav-item"><a href="#" className="nav-link link-body-emphasis px-2" aria-current="page">Home</a>
+                        <li className="nav-item">
+                            <Link to="" className="nav-link link-body-emphasis px-2" aria-current="page">Home</Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown"
+                            <Link className="nav-link dropdown-toggle text-dark" to="" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Account
-                            </a>
+                            </Link>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#"> <button type="button"
-                                    className="btn btn-warning d-flex justify-content-center w-100">SIGN UP</button></a></li>
+                                <li><Link className="dropdown-item" to=""> <button type="button"
+                                    className="btn btn-warning d-flex justify-content-center w-100">SIGN UP</button></Link></li>
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
-                                <li><a className="dropdown-item" href="#"><span><i className="fa fa-user"
-                                    aria-hidden="true"></i></span>My Account</a></li>
+                                <li><Link className="dropdown-item" to=""><span><i className="fa fa-user"
+                                    aria-hidden="true"></i></span>My Account</Link></li>
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown"
+                            <Link className="nav-link dropdown-toggle text-dark" to="" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Product
-                            </a>
+                            </Link>
                             <ul className="dropdown-menu">
-                                <li><a className="dropdown-item" href="#"><i className="fa fa-shopping-bag"
-                                    aria-hidden="true"></i>Orders</a></li>
-                                <li><a className="dropdown-item" href="#"><i className="fa fa-heart" aria-hidden="true"></i>Saved
-                                    Items</a></li>
+                                <li><Link className="dropdown-item" to=""><i className="fa fa-shopping-bag"
+                                    aria-hidden="true"></i>Orders</Link></li>
+                                <li><Link className="dropdown-item" to=""><i className="fa fa-heart" aria-hidden="true"></i>Saved
+                                    Items</Link></li>
                             </ul>
                         </li>
                     </ul>
-                    <ul className="nav shopping">
-                        <li className="nav-item">
-                            <a href="" className="nav-link link-body-emphasis px-2" onClick={cart}>
-                                <div className="increment" id="cart-number">{cartCount}</div>
+                    <ul className="nav">
+                        <li className="nav-item shopping">
+                            <a className="nav-link link-body-emphasis px-2" onClick={cart}>
+                                <p className="increment" id="cart-number">{cartCount}</p>
                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i> Cart
                             </a>
                         </li>

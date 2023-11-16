@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from '../Context/useAuth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Product = () => {
@@ -39,7 +42,7 @@ const Product = () => {
 
         if (order.status == 409) {
             let res = await order.json();
-            alert('Product has already been added to cart');
+            toast.error('Product has already been added to cart');
             console.log(res)
 
             return;
@@ -49,7 +52,7 @@ const Product = () => {
             let res = await order.json();
             console.log(res)
 
-            alert("Item successfully added to cart")
+            toast.success("Item successfully added to cart")
             handleAddToCart();
 
         }
@@ -92,6 +95,8 @@ const Product = () => {
 
     return (
         <>
+            <ToastContainer />
+
             <motion.div
                 initial={{ x: -1000 }}
                 animate={{ x: 0 }}

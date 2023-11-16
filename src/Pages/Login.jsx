@@ -90,16 +90,15 @@ const Login = () => {
 
                         <button type="submit" className="submit" onClick={loginBtn}>Log in</button>
 
-
-                        <a href="">Forgot password?</a>
+                        <p>
+                          
+                            <Link to="/signup">
+                            Dont have an account? Sign up
+                            </Link>
+                        </p>
                     </form>
 
-                    <p>
-                        Dont have an account?
-                        <Link to="/signup">
-                            Sign up
-                        </Link>
-                    </p>
+
                 </main>
             </div >
         </>
