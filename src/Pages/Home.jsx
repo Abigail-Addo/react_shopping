@@ -1,11 +1,10 @@
-import './Home.css'
-
+import '../assets/css/Home.css'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Product from '../components/Product'
 import Footer from '../components/Footer'
 import ImageSlider from '../components/ImageSlider'
-import images from '../assets/images.json'
+import images from '../assets/images/images.json'
 
 
 
@@ -22,10 +21,12 @@ const Home = () => {
 
             <ImageSlider slides={slides} />
 
-            <Product />
+            <Product>
+            </Product>
 
             <Footer>
             </Footer>
+
         </>
     )
 }

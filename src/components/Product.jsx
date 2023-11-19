@@ -13,7 +13,7 @@ const Product = () => {
     useEffect(() => {
         (async function () {
 
-            let result = await fetch('http://localhost:7070/shop/v1/products')
+            let result = await fetch('http://localhost:7272/shop/v1/products')
             const response = await result.json();
             setProducts(response)
 
@@ -27,16 +27,16 @@ const Product = () => {
             return;
         }
 
-        let customer_id = user.id;
+        let user_id = user.id;
 
-        const order = await fetch('http://localhost:7070/shop/v1/order', {
+        const order = await fetch('http://localhost:7272/shop/v1/order', {
             method: 'POST',
             headers: {
                 "content-type": "application/json "
             },
             body: JSON.stringify({
                 product_id: Number(product_id),
-                customer_id: Number(customer_id)
+                user_id: Number(user_id)
             })
         })
 
@@ -65,13 +65,13 @@ const Product = () => {
             return;
         }
 
-        const rs = await fetch('http://localhost:7070/shop/v1/orders-with-customerId', {
+        const rs = await fetch('http://localhost:7272/shop/v1/orders-with-userId', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify({
-                customer_id: user.id
+                user_id: user.id
             })
 
         });

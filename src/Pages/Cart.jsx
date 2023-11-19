@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from '../Context/useAuth';
 import Header from '../components/Header'
-import './Cart.css'
+import '../assets/css/Cart.css'
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,15 +31,17 @@ const Cart = () => {
         console.error("User not found in localStorage");
         return;
       }
-      let customerId = user.id;
-      console.log(customerId);
-      if (customerId > 0) {
-        let rs = await fetch('http://localhost:7070/shop/v1/orderWithCustomerId', {
+      let userId = user.id;
+      console.log(userId);
+      if (userId > 0) {
+        let rs = await fetch('http://localhost:7272/shop/v1/orderWithUserId', {
           method: 'POST',
           headers: {
             "content-type": "application/json"
           },
-          body: JSON.stringify({ customer_id: customerId })
+          body: JSON.stringify({
+            user_id: userId
+          })
         })
         if (rs.status == 200) {
           const response = await rs.json();
@@ -54,7 +56,7 @@ const Cart = () => {
     try {
       const confirmed = confirm("Are you sure you want to delete this order");
       if (confirmed) {
-        const result = await fetch(`http://localhost:7070/shop/v1/deleteAnOrder/${orderId}`, {
+        const result = await fetch(`http://localhost:7272/shop/v1/deleteAnOrder/${orderId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'

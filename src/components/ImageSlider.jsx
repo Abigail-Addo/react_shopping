@@ -8,14 +8,14 @@ const ImageSlider = ({ slides }) => {
     const goPrevious = () => {
         const isFirstSlide = index === 0
         if (isFirstSlide) {
-            setIndex(3)
+            setIndex(2)
         }
         else {
             setIndex(index - 1)
         }
     }
     const goNext = () => {
-        const isLastSlide = index === 3
+        const isLastSlide = index === 2
         if (isLastSlide) {
             setIndex(0)
         }
@@ -38,7 +38,7 @@ const ImageSlider = ({ slides }) => {
 
     return (
         <>
-            <div className="imageSlider container h-25">
+            <div className="imageSlider">
                 <i className="bi bi-arrow-left" onClick={goPrevious}></i>
                 <img src={`${slides[index].url}`} alt={`${slides[index].title}`} />
                 <i className="bi bi-arrow-right" onClick={goNext}></i>

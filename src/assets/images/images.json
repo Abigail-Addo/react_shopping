@@ -1,0 +1,22 @@
+{
+    "slides": [
+        {
+            "url": "http://localhost:7272/images_carousel/caro_one.png",
+            "title": "Carousel"
+        },
+        {
+            "url": "http://localhost:7272/images_carousel/caro_two.png",
+            "title": "Carousel"
+        },
+        {
+            "url": "http://localhost:7272/images_carousel/caro_three.png",
+            "title": "Carousel"
+        }
+    ],
+    "default_user": [
+        {
+            "url": "http://localhost:7272/uploads/user/user.jpg",
+            "title": "default user"
+        }
+    ]
+}

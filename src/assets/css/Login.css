@@ -1,8 +1,7 @@
 div.con {
   width: 100%;
   height: 100vh;
-  /* background: radial-gradient(circle, #333333, #000000); */
-  background-image: url('../src/assets/background.jpg');
+  background-image: url('../src/assets/images/background.jpg');
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
@@ -64,7 +63,8 @@ form div.form-controls input#password {
   padding-right: 2.2rem;
 }
 
-form div.form-controls input:focus {
+form div.form-controls input:focus,
+form div.form-controls input:hover {
   border-bottom: 2px solid #000;
 }
 
