@@ -71,18 +71,16 @@ div.card-text p.fw-bold {
 
 div.imageSlider {
   width: 100%;
-  height: auto;
+  height: 50%;
   /* margin-top: 1rem; */
   position: relative;
-  border: 2px solid black;
 }
 
 div.imageSlider img {
   width: 50%;
-  height: auto;
+  height: 50%;
   display: flex;
-  margin: 1rem auto;
-  border: 2px solid black;
+  margin: auto;
 }
 
 div.imageSlider i.bi-arrow-left {
@@ -97,7 +95,6 @@ div.imageSlider i.bi-arrow-left {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid black;
 }
 
 div.imageSlider i.bi-arrow-left:hover,
@@ -123,8 +120,6 @@ div.imageSlider i.bi-arrow-right {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid black;
-
 }
 
 div.imageSlider i.bi-arrow-right:hover,

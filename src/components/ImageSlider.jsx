@@ -38,7 +38,7 @@ const ImageSlider = ({ slides }) => {
 
     return (
         <>
-            <div className="imageSlider">
+            <div className="imageSlider container">
                 <i className="bi bi-arrow-left" onClick={goPrevious}></i>
                 <img src={`${slides[index].url}`} alt={`${slides[index].title}`} />
                 <i className="bi bi-arrow-right" onClick={goNext}></i>

@@ -5,10 +5,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
 const Product = () => {
     const [products, setProducts] = useState([]);
     const { setCartCount } = useAuth();
+    const [productTotal, setProductTotal] = useState();
 
     useEffect(() => {
         (async function () {
@@ -16,9 +16,18 @@ const Product = () => {
             let result = await fetch('http://localhost:7272/shop/v1/products')
             const response = await result.json();
             setProducts(response)
-
+            productNumber();
         })();
-    }, [])
+    }, [productTotal])
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const productNumber = async () => {
+        let result = await fetch('http://localhost:7272/shop/v1/products')
+        const response = await result.json();
+        let initialLength = productTotal;
+        const productName = response.reduce((newLength, length) => newLength + length, initialLength);
+        setProductTotal(productName)
+    };
 
     const cartBtn = async (product_id) => {
         let user = JSON.parse(localStorage.getItem("user"));
