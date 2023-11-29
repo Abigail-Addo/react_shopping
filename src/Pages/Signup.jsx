@@ -68,7 +68,6 @@ const Signup = () => {
           setTimeout(() => {
             setErrorMessage(errorMessage)
           }, 3000);
-
         }
       }
 

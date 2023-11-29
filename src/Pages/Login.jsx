@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../Context/useAuth";
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
-import { v4 as uuidv4 } from 'uuid';
-
 
 
 const Login = () => {
@@ -17,8 +15,7 @@ const Login = () => {
     const password = watch("password");
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
-
-    const { login, setAuth, setToken, setCurrentUser } = useAuth();
+    const { login, setAuth } = useAuth();
 
     const loginSubmit = async () => {
 
@@ -56,10 +53,6 @@ const Login = () => {
         }
     }
 
-    // const responseGoogle = (response) => {
-    //     console.log(response);
-    // }
-
     return (
         <>
 
@@ -93,47 +86,46 @@ const Login = () => {
 
                         <button type="submit" className="submit">Log in</button>
 
-                        {/* <GoogleLogin
-                            clientId="534640297346-dgpu7p6l5efhdqqmnak0mamjj9e38jpa.apps.googleusercontent.com"
-                            buttonText="Login"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        /> */}
+
 
                         <GoogleLogin
-                            onSuccess={credentialResponse => {
+                            onSuccess={async (credentialResponse) => {
                                 const credentialResponseDecoded = jwtDecode(credentialResponse.credential)
-                                // console.log(credentialResponseDecoded);
+                                console.log(credentialResponseDecoded)
                                 const response = credentialResponseDecoded
-                                const userId = uuidv4();
 
-                                const randomToken = Array.from({ length: 32 }, () =>
-                                    Math.random().toString(36)[2]
-                                ).join('');
-                                setToken(randomToken);
-                                localStorage.setItem("token", randomToken);
+                                if (response) {
+                                    const defaultPic = response.picture
 
-                                let user = {
-                                    id: userId,
-                                    name: response.name,
-                                    email: response.email,
-                                    profile_photo: response.picture 
-                                };
-                                let User = JSON.stringify(user);
+                                    const result = await fetch(`http://localhost:7272/shop/v1/googleUser`, {
+                                        method: 'POST',
+                                        headers: {
+                                            "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify({
+                                            name: response.name,
+                                            email: response.email,
+                                            password: response.sub,
+                                            picture: defaultPic
+                                        })
+                                    });
 
-                                setCurrentUser(User)
-                                setAuth(true)
-                                localStorage.setItem("user", User);
-                                redirect("/home");
+                                    const data = await result.json();
+                                    console.log(data)
 
-
+                                    if (data.id > 0) {
+                                        login(data)
+                                        setAuth(true)
+                                        setSuccessMessage("Login successful")
+                                        setTimeout(() => {
+                                            redirect("/home");
+                                        }, 2000);
+                                    }
+                                }
                             }}
                             onError={() => {
-                                console.log('Login Failed');
+                                console.log('Failed to login');
                             }}
-
-
                         />,
 
                         <p>

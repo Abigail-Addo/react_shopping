@@ -27,45 +27,45 @@ const Header = () => {
 
     return (
         <>
-            <header className="py-2 border-bottom bg-white">
-                <div className="container d-flex justify-content-center">
-                    <ul className='nav d-flex justify-content-center align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis '>
-                        <li className='nav-item image'>
-                            <img
-                                src={image}
-                                alt="logo"
-                            />
-                        </li>
-                    </ul>
-
-                    {
-                        auth ? (
-                            <ul className="nav d-flex justify-content-end align-items-center mb-3 mb-lg-0 link-body-emphasis users">
-                                <li className="nav-item user d-flex justify-content-end w-25">
-                                    <img
-                                        src={currentUser.profile_photo}
+            <div>
+                <header className=" bg-white">
+                    <div className="container d-flex justify-content-center align-items-center header">
+                        <ul className='nav d-flex justify-content-center align-items-center me-lg-auto link-body-emphasis w-100'>
+                            <li className='nav-item image'>
+                                <img
+                                    src={image}
+                                    alt="logo"
+                                />
+                            </li>
+                        </ul>
+                        {
+                            auth ? (
+                                <ul className="w-100 nav d-flex justify-content-end align-items-center link-body-emphasis">
+                                    <img className="nav-item user d-flex justify-content-end align-items-center"
+                                        src={currentUser.picture}
                                         alt="logo"
                                     />
-                                </li>
-                                <li className="nav-item user px-2">
-                                    {currentUser.name}
-                                </li>
-                                <li className="nav-item" onClick={onLogout}>
-                                    <i className="bi bi-box-arrow-right"></i>
-                                </li>
-                            </ul>
-                        ) : (
-                            <ul className="nav d-flex align-items-center mb-3 mb-lg-0 link-body-emphasis">
-                                <Link to="/login">
-                                    <li className="nav-item">
-                                        <i className="bi bi-box-arrow-in-right"></i>
+                                    <li className="nav-item px-2 users">
+                                        {currentUser.name}
                                     </li>
-                                </Link>
-                            </ul>
-                        )
-                    }
-                </div>
-            </header>
+                                    <li className="nav-item users" onClick={onLogout} title='Log out'>
+                                        <i className="bi bi-box-arrow-right"></i>
+                                    </li>
+                                </ul>
+                            ) : (
+                                <ul className="nav d-flex align-items-center mb-3 mb-lg-0 link-body-emphasis">
+                                    <Link to="/login" title='Log in'>
+                                        <li className="nav-item">
+                                            <i className="bi bi-box-arrow-in-right"></i>
+                                        </li>
+                                    </Link>
+                                </ul>
+                            )
+                        }
+                    </div>
+                </header>
+            </div>
+
         </>
     );
 }

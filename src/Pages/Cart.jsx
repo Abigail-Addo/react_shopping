@@ -22,9 +22,6 @@ const Cart = () => {
     } else {
       setAuth(false);
     }
-  }, [setCurrentUser, setAuth]);
-
-  useEffect(() => {
     (async function () {
       let user = JSON.parse(localStorage.getItem("user"));
       if (!user || !user.id) {
@@ -49,7 +46,8 @@ const Cart = () => {
         }
       }
     })();
-  }, []);
+  }, [setCurrentUser, setAuth]);
+
 
   const deleteItem = async (orderId) => {
 
@@ -162,8 +160,8 @@ const Cart = () => {
             <div className="h3 font-weight-semibold text-start py-3">{cartPrice}</div>
             <hr />
             <p className="h6 pt-2 font-weight-semibold text-muted">Delivery fees are not included</p>
-            <Link to="/checkout">
-              <p className="btn btn-primary btn-block" href="">
+            <Link to="/payment">
+              <p className="btn btn-primary btn-block">
                 Proceed to Checkout</p>
             </Link>
             <div className="pt-4">

@@ -2,17 +2,21 @@ import { useEffect, useState } from "react";
 import { useAuth } from '../Context/useAuth';
 import Header from '../components/Header'
 import '../assets/css/Checkout.css'
-import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+// import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckoutForm from "../components/CheckoutForm";
 
 
 const Checkout = () => {
 
-    const redirect = useNavigate();
     const { setCurrentUser, setAuth } = useAuth();
     const [priceTotal, setPriceTotal] = useState(0);
+
+    const [stripePromise, setStripePromise] = useState(null);
+    const [clientSecret, setClientSecret] = useState("");
 
     useEffect(() => {
         const localToken = localStorage.getItem("token");
@@ -23,11 +27,47 @@ const Checkout = () => {
         } else {
             setAuth(false);
         }
-    }, [setCurrentUser, setAuth]);
 
-    useEffect(() => {
+        const totalPrices = () => {
+            const numberFormat = parseFloat(pricesCal().replace('GH\u00A2 ', '').replace(',', ''));
+            const prices = numberFormat + 20;
+            const formattedTotalPrice = prices.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+
+            setPriceTotal('GH' + '\u00A2' + ' ' + formattedTotalPrice);
+
+        }
         totalPrices();
-    });
+
+
+        (async function () {
+            try {
+                const result = await fetch('http://localhost:7272/stripe/v1/config')
+                const { publishableKey } = await result.json();
+                setStripePromise(loadStripe(publishableKey));
+            } catch (error) {
+                console.log({ message: error.message })
+            }
+        })();
+
+        (async function () {
+
+            try {
+                const result = await fetch('http://localhost:7272/stripe/v1/create-payment-intent', {
+                    method: "POST",
+                    body: JSON.stringify({
+                        amount: priceTotal,
+                        currency: "usd",
+                    }),
+                })
+                let { clientSecret } = await result.json();
+                setClientSecret(clientSecret);
+            } catch (error) {
+                console.log({ message: error.message })
+            }
+        })();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [setCurrentUser, setAuth, setPriceTotal]);
 
     const pricesCal = () => {
         const totalPrice = localStorage.getItem('totalPrice');
@@ -35,72 +75,18 @@ const Checkout = () => {
         return ('GH' + '\u00A2' + ' ' + totalPrice)
     }
 
-    const totalPrices = () => {
-        const numberFormat = parseFloat(pricesCal().replace('GH\u00A2 ', '').replace(',', ''));
-        const prices = numberFormat + 20;
-        const formattedTotalPrice = prices.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-
-        setPriceTotal('GH' + '\u00A2' + ' ' + formattedTotalPrice);
-
-    }
-
-    const clearOrder = async () => {
-        let user = JSON.parse(localStorage.getItem("user"));
-        if (!user || !user.id) {
-            console.error("User not found in localStorage");
-            return;
-        }
-        let userId = user.id;
-        try {
-            let confirmed = confirm('Are you sure you want to proceed?');
-            if (confirmed) {
-                if (userId > 0) {
-                    // First, fetch all orders for the customer
-                    let result = await fetch(`http://localhost:7272/shop/v1/orders?user_id=${userId}`);
-                    let response = await result.json();
-                    console.log(response);
-
-                    if (result.status === 200) {
-                        // If orders were fetched successfully, proceed with bulk deletion
-                        let deleteResponse = await fetch(`http://localhost:7272/shop/v1/deleteOrders?user_id=${userId}`, {
-                            method: 'DELETE',
-                            headers: {
-                                "content-type": "application/json"
-                            }
-                        });
-
-                        if (deleteResponse.status === 200) {
-                            console.log("Orders deleted successfully");
-                            localStorage.removeItem('totalPrice');
-                            toast.success("Your order has been placed successfully");
-                            setTimeout(() => {
-                                redirect("/home");
-                            }, 8000);
-                        } else {
-                            toast.error("Failed to place your order");
-                        }
-
-                    }
-                }
-            }
-        } catch (error) {
-            console.error(error.message);
-        }
 
 
 
-    }
+
     return (
         <>
             <Header>
             </Header>
 
-            <ToastContainer />
-
 
             <div className="container bg-white py-5 mt-5">
                 <main>
-
                     <div className="row d-flex justify-content-center">
                         <div className="col-md-5 col-lg-4 order-md-last">
                             <h4 className="d-flex justify-content-between align-items-center mb-3">
@@ -126,7 +112,14 @@ const Checkout = () => {
                                 </li>
                             </ul>
                             <h4 className="mb-3">Billing address</h4>
-                            <div className="col-12">
+                            {clientSecret && stripePromise && (
+                                <Elements stripe={stripePromise} options={{ clientSecret }}>
+                                    <CheckoutForm />
+                                </Elements>
+                            )}
+
+
+                            {/* <div className="col-12">
                                 <label htmlFor="address" className="form-label">Address</label>
                                 <input type="text" className="form-control" id="address" required />
                                 <div className="invalid-feedback">
@@ -166,7 +159,6 @@ const Checkout = () => {
                                 <label className="form-check-label" htmlFor="same-address">Shipping address is the same as my
                                     billing address</label>
                             </div>
-
                             <div className="form-check">
                                 <input type="checkbox" className="form-check-input" id="save-info" />
                                 <label className="form-check-label" htmlFor="save-info">Save this information for next time</label>
@@ -185,7 +177,6 @@ const Checkout = () => {
                                     <label className="form-check-label" htmlFor="momo">Mobile money</label>
                                 </div>
                             </div>
-
                             <div className="row gy-3 payment collapse" id="collapseExample">
                                 <div className="col-md-6">
                                     <label htmlFor="ac-name" className="form-label">Account Name</label>
@@ -197,10 +188,10 @@ const Checkout = () => {
                                     <input type="text" name="acnumber" className="form-control" id="ac-number" />
                                 </div>
                             </div>
-                            <hr className="my-4" />
-                            <div className="col-md-6">
-                                <p className="w-100 btn btn-primary submit" type="submit" onClick={clearOrder}>Confirm Order</p>
-                            </div>
+                            <hr className="my-4" /> */}
+                            {/* <div className="col-md-6">
+                                    <p className="w-100 btn btn-primary submit" type="submit" >Confirm Order</p>
+                                </div> */}
 
                         </div>
                     </div>

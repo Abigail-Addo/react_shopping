@@ -72,7 +72,7 @@ button.submit {
   cursor: pointer;
   width: 100%;
   height: 2rem;
-  margin-top: 2rem;
+  margin: 2rem 0;
   background-image: linear-gradient(to right, #BEE3FE, #FFBFF9);
   border: 0;
   font-weight: bold;

@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './Pages/Login';
 import Home from './Pages/Home';
 import Signup from './Pages/Signup';
-import Checkout from './Pages/Checkout';
+import Payment from './Pages/Payment';
 import Cart from './Pages/Cart';
 
 const Router = () => {
@@ -18,7 +18,7 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
 
 

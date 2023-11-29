@@ -46,15 +46,12 @@ const Navbar = () => {
                                     Items</Link></li>
                             </ul>
                         </li>
+
                     </ul>
-                    <ul className="nav">
-                        <li className="nav-item shopping">
-                            <a className="nav-link link-body-emphasis px-2" onClick={cart}>
-                                <p className="increment" id="cart-number">{cartCount}</p>
-                                <i className="fa fa-shopping-cart" aria-hidden="true"></i> Cart
-                            </a>
-                        </li>
-                    </ul>
+                    <div onClick={cart} className='d-flex flex-column' title='Cart'>
+                        <span>{cartCount}</span>
+                        <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
                 </div>
             </nav>
         </>

@@ -17,7 +17,6 @@ function App() {
   return (
 
     <>
-
       <AnimatePresence wait>
         <GoogleOAuthProvider clientId="534640297346-4rs21f6gd3ukh7551m0n9raomgcvgcj7.apps.googleusercontent.com">
           <AuthProvider>
@@ -26,7 +25,6 @@ function App() {
         </GoogleOAuthProvider>;
 
       </AnimatePresence>
-
     </>
 
   )

@@ -1,0 +1,8 @@
+div.footer {
+    background-color: #E6F7FF;
+}
+
+div.navLinks {
+    display: flex;
+    justify-content: space-between;
+}
