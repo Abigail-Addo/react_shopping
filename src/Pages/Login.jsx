@@ -95,7 +95,6 @@ const Login = () => {
                                 const response = credentialResponseDecoded
 
                                 if (response) {
-                                    const defaultPic = response.picture
 
                                     const result = await fetch(`http://localhost:7272/shop/v1/googleUser`, {
                                         method: 'POST',
@@ -106,7 +105,7 @@ const Login = () => {
                                             name: response.name,
                                             email: response.email,
                                             password: response.sub,
-                                            picture: defaultPic
+                                            picture: response.picture
                                         })
                                     });
 

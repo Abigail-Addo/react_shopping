@@ -18,7 +18,7 @@ function App() {
 
     <>
       <AnimatePresence wait>
-        <GoogleOAuthProvider clientId="534640297346-4rs21f6gd3ukh7551m0n9raomgcvgcj7.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`}>
           <AuthProvider>
             <Routes />
           </AuthProvider>
