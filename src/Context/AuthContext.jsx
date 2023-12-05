@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
             return
         }
     }
-    
+
     const logout = () => {
         setCurrentUser(null)
         setToken(null)
@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }) => {
         } else {
             setAuth(false);
             console.log("user not authenticated")
+
         }
     }, [currentUser, setToken]);
 

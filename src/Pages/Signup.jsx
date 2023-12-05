@@ -29,7 +29,7 @@ const Signup = () => {
     try {
       const formData = new FormData();
       formData.append("file", profileImage);
-      let server = await fetch('http://localhost:7272/shop/v1/store-image', {
+      let server = await fetch(`${import.meta.env.VITE_App_API_URL}/shop/v1/store-image`, {
         method: 'POST',
         headers: {
           Accept: "application/octet-stream",
@@ -41,7 +41,7 @@ const Signup = () => {
         const response = await server.json()
         const { name, email, password } = getValues();
 
-        const result = await fetch(`http://localhost:7272/shop/v1/user`, {
+        const result = await fetch(`${import.meta.env.VITE_App_API_URL}/shop/v1/user`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json"

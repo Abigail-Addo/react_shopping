@@ -20,7 +20,7 @@ const Login = () => {
     const loginSubmit = async () => {
 
         try {
-            const result = await fetch(`http://localhost:7272/shop/v1/login`, {
+            const result = await fetch(`${import.meta.env.VITE_App_API_URL}/shop/v1/login`, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
@@ -89,6 +89,7 @@ const Login = () => {
 
 
                         <GoogleLogin
+                            clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
                             onSuccess={async (credentialResponse) => {
                                 const credentialResponseDecoded = jwtDecode(credentialResponse.credential)
                                 console.log(credentialResponseDecoded)
@@ -96,7 +97,7 @@ const Login = () => {
 
                                 if (response) {
 
-                                    const result = await fetch(`http://localhost:7272/shop/v1/googleUser`, {
+                                    const result = await fetch(`${import.meta.env.VITE_App_API_URL}/shop/v1/googleUser`, {
                                         method: 'POST',
                                         headers: {
                                             "Content-Type": "application/json"
