@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth } from '../Context/useAuth';
+import { useAuth } from '../ContextAPI/useAuth';
 import Header from '../components/Header'
 import '../assets/css/Checkout.css';
 import 'react-toastify/dist/ReactToastify.css';

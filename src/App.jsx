@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import './assets/css/App.css'
 
-import { AuthProvider } from './Context/AuthContext';
+import { AuthProvider } from './ContextAPI/AuthContext';
 import { AnimatePresence } from 'framer-motion';
 
 import Routes from './routes'

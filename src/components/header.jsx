@@ -1,5 +1,5 @@
 import image from '../assets/images/logo.png'
-import { useAuth } from '../Context/useAuth';
+import { useAuth } from '../ContextAPI/useAuth';
 import { useNavigate, Link } from 'react-router-dom';
 import { useEffect } from "react";
 

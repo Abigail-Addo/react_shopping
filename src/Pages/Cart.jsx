@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../Context/useAuth";
-import Header from "../components/Header";
+import { useAuth } from "../ContextAPI/useAuth";
+import Header from "../components/header";
 import "../assets/css/Cart.css";
 import { useNavigate, Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
