@@ -1,0 +1,181 @@
+li.image img {
+  height: 10%;
+  width: 20%;
+  padding: 0.5rem 0;
+}
+
+ul li a i {
+  margin-right: 0.5rem;
+}
+
+ul li {
+  cursor: pointer;
+}
+
+div.card {
+  position: relative;
+}
+
+div.card-body i.bi {
+  color: yellow;
+}
+
+
+div.card-body i.fa {
+  position: absolute;
+  bottom: 7%;
+  right: 10%;
+}
+
+div.card-text {
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+div.card-text p.fw-bold {
+  width: 80%;
+  margin: auto;
+}
+
+.textTruncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div.card-text {
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+div.card-text p.fw-bold {
+  width: 80%;
+  margin: auto;
+}
+
+.textTruncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.para {
+  width: 80%;
+  margin: auto;
+}
+
+div.imageSlider {
+  width: 100%;
+  height: 50%;
+  /* margin-top: 1rem; */
+  position: relative;
+}
+
+div.imageSlider img {
+  width: 50%;
+  height: 50%;
+  display: flex;
+  margin: auto;
+}
+
+div.imageSlider i.bi-arrow-left {
+  cursor: pointer;
+  font-size: 3rem;
+  position: absolute;
+  top: 0;
+  left: 10%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.imageSlider i.bi-arrow-left:hover,
+div.imageSlider i.bi-arrow-left:focus {
+  display: block;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+div.imageSlider i.bi-arrow-right {
+  cursor: pointer;
+  font-size: 3rem;
+  padding: 0 0.2rem;
+  position: absolute;
+  top: 0;
+  right: 10%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.imageSlider i.bi-arrow-right:hover,
+div.imageSlider i.bi-arrow-right:focus {
+  display: block;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+i.bi-box-arrow-right {
+  display: flex;
+  margin-left: 1rem;
+  color: #5c5ce8;
+}
+
+img.user {
+  border-radius: 50%;
+  height: 10%;
+  width: 10%;
+  padding: 0.5rem 0;
+}
+
+div.footer {
+  background-color: #fff;
+  margin-bottom: 2rem;
+}
+
+i {
+  cursor: pointer;
+}
+
+div.card:hover {
+  box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.1), -8px -8px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 767px) {
+  li.image img {
+    height: 20%;
+    width: 50%;
+  }
+
+  img.user {
+    height: 10%;
+    width: 10%;
+  }
+
+  div.imageSlider img {
+    width: 100%;
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1100px) {
+
+  div.imageSlider img {
+    width: 100%;
+  }
+
+}
