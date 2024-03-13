@@ -62,6 +62,7 @@ const Product = () => {
     const cartBtn = async (product_id) => {
         let user = JSON.parse(localStorage.getItem("user"));
         if (!user || !user.id) {
+            toast.error('Please login to add an item to cart');
             console.error("User not found in localStorage");
             return;
         }
