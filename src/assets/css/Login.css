@@ -77,6 +77,9 @@ button.submit {
   border: 0;
   font-weight: bold;
   border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 button.submit:hover,
@@ -104,6 +107,7 @@ form a {
 div.errorMessage {
   color: red;
 }
+
 div.successMessage {
   color: green;
 }

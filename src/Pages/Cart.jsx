@@ -29,7 +29,7 @@ const Cart = () => {
       let userId = user.id;
       console.log(userId);
       if (userId > 0) {
-        let rs = await fetch("http://localhost:7272/shop/v1/orderWithUserId", {
+        let rs = await fetch("https://shopping-backend-mhxl.onrender.com/api/v1/orderWithUserId", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -51,7 +51,7 @@ const Cart = () => {
       const confirmed = confirm("Are you sure you want to delete this order");
       if (confirmed) {
         const result = await fetch(
-          `http://localhost:7272/shop/v1/deleteAnOrder/${orderId}`,
+          `https://shopping-backend-mhxl.onrender.com/api/v1/deleteAnOrder/${orderId}`,
           {
             method: "DELETE",
             headers: {
@@ -90,7 +90,7 @@ const Cart = () => {
       const updatedPrice = orderToUpdate.products.price * updatedQuantity;
 
       const result = await fetch(
-        `http://localhost:7272/shop/v1/update-an-order/${orderId}`,
+        `https://shopping-backend-mhxl.onrender.com/api/v1/update-an-order/${orderId}`,
         {
           method: "PATCH",
           headers: {

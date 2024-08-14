@@ -1,5 +1,5 @@
 import '../assets/css/Home.css'
-import Header from '../components/Header'
+import Header from '../components/header'
 import Navbar from '../components/Navbar'
 import Product from '../components/Product'
 import Footer from '../components/Footer'

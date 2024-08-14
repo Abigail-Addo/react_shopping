@@ -12,7 +12,7 @@ const Product = () => {
 
     useEffect(() => {
         (async function () {
-            let result = await fetch('http://localhost:7272/shop/v1/products')
+            let result = await fetch('https://shopping-backend-mhxl.onrender.com/api/v1/products')
             const response = await result.json();
             setProducts(response)
             // handleAddToCart();
@@ -22,7 +22,7 @@ const Product = () => {
                 return;
             }
 
-            const rs = await fetch('http://localhost:7272/shop/v1/orders-with-userId', {
+            const rs = await fetch('https://shopping-backend-mhxl.onrender.com/api/v1/orders-with-userId', {
                 method: 'POST',
                 headers: {
                     "content-type": "application/json"
@@ -51,7 +51,7 @@ const Product = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const productNumber = async () => {
-        let result = await fetch('http://localhost:7272/shop/v1/products')
+        let result = await fetch('https://shopping-backend-mhxl.onrender.com/api/v1/products')
         const response = await result.json();
 
         let initialLength = productTotal;
@@ -69,7 +69,7 @@ const Product = () => {
 
         let user_id = user.id;
 
-        const order = await fetch('http://localhost:7272/shop/v1/order', {
+        const order = await fetch('https://shopping-backend-mhxl.onrender.com/api/shop/v1/order', {
             method: 'POST',
             headers: {
                 "content-type": "application/json "

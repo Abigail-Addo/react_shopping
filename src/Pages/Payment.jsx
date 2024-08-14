@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from '../ContextAPI/useAuth';
-import Header from '../components/Header'
+import Header from '../components/header'
 import '../assets/css/Checkout.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -39,7 +39,7 @@ const Checkout = () => {
 
         (async function () {
             try {
-                const result = await fetch('http://localhost:7272/stripe/v1/config')
+                const result = await fetch('https://shopping-backend-mhxl.onrender.com/api/stripe/v1/config')
                 const { publishableKey } = await result.json();
                 setStripePromise(loadStripe(publishableKey));
             } catch (error) {
@@ -52,7 +52,7 @@ const Checkout = () => {
             const fPrices = prices.replace(/,|\.00/g, "");
 
             try {
-                const result = await fetch('http://localhost:7272/stripe/v1/create-payment-intent', {
+                const result = await fetch('https://shopping-backend-mhxl.onrender.com/api/stripe/v1/create-payment-intent', {
                     method: "POST",
                     body: JSON.stringify({
                         amount: parseInt(fPrices),

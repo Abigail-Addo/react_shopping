@@ -58,13 +58,13 @@ const CheckoutForm = () => {
 
         if (userId > 0) {
             // First, fetch all orders for the customer
-            let result = await fetch(`http://localhost:7272/shop/v1/orders?user_id=${userId}`);
+            let result = await fetch(`https://shopping-backend-mhxl.onrender.com/api/v1/orders?user_id=${userId}`);
             let response = await result.json();
             console.log(response);
 
             if (result.status === 200) {
                 // If orders were fetched successfully, proceed with bulk deletion
-                let deleteResponse = await fetch(`http://localhost:7272/shop/v1/deleteOrders?user_id=${userId}`, {
+                let deleteResponse = await fetch(`https://shopping-backend-mhxl.onrender.com/api/v1/deleteOrders?user_id=${userId}`, {
                     method: 'DELETE',
                     headers: {
                         "content-type": "application/json"

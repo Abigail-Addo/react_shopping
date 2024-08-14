@@ -38,6 +38,7 @@ div.image img {
     border-radius: 50%;
     object-fit: contain;
 }
+
 .image-button {
     border: 2px solid #dbd3d3;
     background-color: #dbd3d3;
@@ -90,7 +91,7 @@ form div.form-controls input#password {
 }
 
 form div.form-controls input:focus,
-form div.form-controls input:hover  {
+form div.form-controls input:hover {
     border-bottom: 2px solid #000;
 }
 
@@ -103,6 +104,9 @@ button.submit {
     border: 0;
     font-weight: bold;
     border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button.submit:hover,
