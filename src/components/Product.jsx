@@ -117,7 +117,7 @@ const Product = () => {
         transition={{ duration: 1 }}
       >
         <div className="container mt-4 mb-4 bg-white px-5 py-5">
-          <p>
+          <p className="text-danger">
             Images may not show because I&apos;m using the free version of
             render to host the backend. <br />
             Render instances have an ephemeral filesystem, meaning any file
