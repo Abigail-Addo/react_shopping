@@ -1,35 +1,27 @@
-import '../assets/css/Home.css'
-import Header from '../components/header'
-import Navbar from '../components/Navbar'
-import Product from '../components/Product'
-import Footer from '../components/Footer'
-import ImageSlider from '../components/ImageSlider'
-import images from '../assets/images/images.json'
-  
-
+import "../assets/css/Home.css";
+import Header from "../components/header";
+import Navbar from "../components/navbar";
+import Product from "../components/Product";
+import Footer from "../components/Footer";
+import ImageSlider from "../components/ImageSlider";
+import images from "../assets/images/images.json";
 
 const Home = () => {
-    const slides = images.slides;
+  const slides = images.slides;
 
-    return (
-        <>
-            <Header>
-            </Header>
+  return (
+    <>
+      <Header></Header>
 
-            <Navbar>
-            </Navbar>
+      <Navbar></Navbar>
 
-            <ImageSlider slides={slides} />
+      <ImageSlider slides={slides} />
 
-            <Product>
-            </Product>
+      <Product></Product>
 
-            <Footer>
-            </Footer>
-             
+      <Footer></Footer>
+    </>
+  );
+};
 
-        </>
-    )
-}
-
-export default Home
+export default Home;
