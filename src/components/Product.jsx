@@ -117,7 +117,6 @@ const Product = () => {
         transition={{ duration: 1 }}
       >
         <div className="container mt-4 mb-4 bg-white px-5 py-5">
-          <h1 className="pb-3">Featured Products</h1>
           <p>
             Images may not show because I&apos;m using the free version of
             render to host the backend. <br />
@@ -129,6 +128,7 @@ const Product = () => {
             Disk (which is chargeable and also requires a paid instance type) or
             an external service like AWS S3.
           </p>
+          <h1 className="pb-3">Featured Products</h1>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5">
             {products.map((item) => (
               <div className="col" key={item.id}>
