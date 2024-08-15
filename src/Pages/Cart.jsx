@@ -20,25 +20,29 @@ const Cart = () => {
     } else {
       setAuth(false);
     }
-    (async function () {
+
+    (async function fetchCartItems() {
       let user = JSON.parse(localStorage.getItem("user"));
       if (!user || !user.id) {
         console.error("User not found in localStorage");
         return;
       }
+
       let userId = user.id;
-      console.log(userId);
       if (userId > 0) {
-        let rs = await fetch("https://shopping-backend-mhxl.onrender.com/api/v1/orderWithUserId", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            user_id: userId,
-          }),
-        });
-        if (rs.status == 200) {
+        let rs = await fetch(
+          "https://shopping-backend-mhxl.onrender.com/api/v1/orderWithUserId",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              user_id: userId,
+            }),
+          }
+        );
+        if (rs.status === 200) {
           const response = await rs.json();
           setCartItem(response);
         }
@@ -48,7 +52,7 @@ const Cart = () => {
 
   const deleteItem = async (orderId) => {
     try {
-      const confirmed = confirm("Are you sure you want to delete this order");
+      const confirmed = confirm("Are you sure you want to delete this order?");
       if (confirmed) {
         const result = await fetch(
           `https://shopping-backend-mhxl.onrender.com/api/v1/deleteAnOrder/${orderId}`,
@@ -80,8 +84,9 @@ const Cart = () => {
 
   const updateItem = async (orderId, event) => {
     try {
-      const updatedQuantity = event.target.value;
+      const updatedQuantity = parseInt(event.target.value);
       const orderToUpdate = cartItem.find((order) => order.id === orderId);
+
       if (!orderToUpdate) {
         console.error("Order not found");
         return;
@@ -97,6 +102,8 @@ const Cart = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            product_id: orderToUpdate.products.id,
+            user_id: orderToUpdate.user_id,
             quantity: updatedQuantity,
             price: updatedPrice,
           }),
@@ -104,44 +111,46 @@ const Cart = () => {
       );
 
       if (result.status === 200 || result.status === 201) {
-        const response = await result.json();
-        console.log(response);
-
         const updatedCartItems = cartItem.map((order) => {
           if (order.id === orderId) {
-            return { ...order, quantity: updatedQuantity };
+            return {
+              ...order,
+              quantity: updatedQuantity,
+              price: updatedPrice,
+            };
           }
           return order;
         });
+
         setCartItem(updatedCartItems);
         toast.success("Order updated successfully");
+        totalPriceCal();
       } else {
+        const response = await result.json();
+        console.error("Failed to update order:", response);
         toast.error("Failed to update order");
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error updating order:", error);
+      toast.error("An error occurred while updating the order");
     }
   };
 
   useEffect(() => {
     totalPriceCal();
-  });
+  }, [cartItem]);
 
   const totalPriceCal = () => {
-    const prices = [];
-    cartItem.map((order) => {
-      const price = order.products.price;
-      prices.push(parseFloat(price));
-    });
-
-    const totalPrice = prices.reduce((sum, price) => sum + price, 0);
+    const totalPrice = cartItem.reduce(
+      (sum, order) => sum + parseFloat(order.price || 0),
+      0
+    );
 
     const formattedTotalPrice = totalPrice
       .toFixed(2)
       .replace(/\d(?=(\d{3})+\.)/g, "$&,");
 
     setCartPrice("GH" + "\u00A2" + " " + formattedTotalPrice);
-
     localStorage.setItem("totalPrice", formattedTotalPrice);
   };
 
@@ -185,28 +194,35 @@ const Cart = () => {
                       {order.products.description}
                     </div>
                     <div className="font-size-lg pt-2">
-                      <p className="Itemprice">&cent; {order.products.price}</p>
+                      <p className="Itemprice">
+                        &cent; {order.price || order.products.price}
+                      </p>
                     </div>
                   </div>
                 </div>
-                <div className="delete">
-                  <button
-                    className="btn btn-outline-danger btn-sm btn-block"
-                    type="button"
-                    id={order.products.id}
-                    onClick={() => deleteItem(order.id)}
-                  >
-                    <i className="bi bi-trash"></i>Remove
-                  </button>
-                  <input
-                    type="number"
-                    name="number"
-                    id="number"
-                    min={1}
-                    max={10}
-                    defaultValue={order.quantity}
-                    onChange={(e) => updateItem(order.id, e)}
-                  />
+                <div>
+                  <div className="delete">
+                    <button
+                      className="btn btn-outline-danger btn-sm btn-block"
+                      type="button"
+                      id={order.products.id}
+                      onClick={() => deleteItem(order.id)}
+                    >
+                      <i className="bi bi-trash"></i>Remove
+                    </button>
+                  </div>
+                  <div className="delete">
+                    <input
+                      type="number"
+                      name="number"
+                      id="number"
+                      min={1}
+                      max={10}
+                      defaultValue={order.quantity}
+                      onChange={(e) => updateItem(order.id, e)}
+                      onKeyDown={(e) => e.preventDefault()}
+                    />
+                  </div>
                 </div>
               </div>
             ))}

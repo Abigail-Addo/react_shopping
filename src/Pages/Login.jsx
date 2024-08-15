@@ -116,7 +116,7 @@ const Login = () => {
 
                 if (response) {
                   const result = await fetch(
-                    `${import.meta.env.VITE_App_API_URL}/shop/v1/googleUser`,
+                    `${import.meta.env.VITE_App_API_URL}/api/v1/googleUser`,
                     {
                       method: "POST",
                       headers: {
