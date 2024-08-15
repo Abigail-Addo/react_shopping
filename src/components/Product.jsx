@@ -118,6 +118,17 @@ const Product = () => {
       >
         <div className="container mt-4 mb-4 bg-white px-5 py-5">
           <h1 className="pb-3">Featured Products</h1>
+          <p>
+            Images may not show because I&apos;m using the free version of
+            render to host the backend. <br />
+            Render instances have an ephemeral filesystem, meaning any file
+            written to the instance after it has booted will be lost when it
+            next restarts (e.g. spun down if on free instance type, next deploy,
+            manual restart, etc.). If you want to use file uploads on your
+            service, you&apos;ll need to have a persistent store, e.g. a Render
+            Disk (which is chargeable and also requires a paid instance type) or
+            an external service like AWS S3.
+          </p>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5">
             {products.map((item) => (
               <div className="col" key={item.id}>
